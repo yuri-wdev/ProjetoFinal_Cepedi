@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Codex - Dashboard</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="site-admin">
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">QUANTIDADE DE LIVROS: </span>
+                    <span class="stat-value"></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">QUANTIDADE DE CÓPIAS: </span>
+                    <span class="stat-value"></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">EMPRÉSTIMOS ATIVOS: </span>
+                    <span class="stat-value"></span>
+                </div>
+            </div>
+
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="btn-books">ACERVO</button>
+                <button class="tab-btn" id="btn-lendings">EMPRÉSTIMOS</button>
+            </div>
+
+            <div id="section-books">
+                <div class="collection-header">
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Digite o título, código ou ano: ">
+                    </div>
+                    <button class="btn-add">Controle</button>
+                </div>
+
+
+
+                <div class="table-wrapper">
+                    <table id="booksTable">
+                        <thead>
+                            <tr>
+                                <th class="campos">Título</th>
+                                <th class="campos">Autor</th>
+                                <th class="campos">Código</th>
+                                <th class="campos">Categoria</th>
+                                <th class="campos">Publicação</th>
+                                <th class="campos">Quantidade</th>
+                                <th class="campos">Sinopse</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="campos">One Hundred Years of Solitude</td>
+                                <td class="campos">Gabriel García Márquez</td>
+                                <td class="campos">978-0060883287</td>
+                                <td class="campos">Fiction</td>
+                                <td class="campos">1967</td>
+                                <td class="campos">3</td>
+                                <td class="campos"><button>+</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="section-lendings" style="display: none;">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="campos">Cliente</th>
+                                <th class="campos">Livro</th>
+                                <th class="campos">Data de empréstimo</th>
+                                <th class="campos">Data de devolução</th>
+                                <th class="campos">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
