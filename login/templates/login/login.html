@@ -14,7 +14,8 @@
         <h1>Codex</h1>
         <p>Gerenciamento de empréstimos e acervo</p>
 
-        <form action="#" method="post">
+        <form action="" method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="username">Usuário</label>
                 <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
@@ -24,6 +25,10 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
             </div>
+
+            {% if erro %}
+                <p class="erro">{{ erro }}</p>
+            {% endif %}
 
             <button type="submit" class="btn-login">Entrar</button>
         </form>

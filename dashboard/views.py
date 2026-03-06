@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from control.models import Livro
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def dashboard(request):
 
     ## fazer funcao de contar os emprestimos ativos e inativos, e total de livros

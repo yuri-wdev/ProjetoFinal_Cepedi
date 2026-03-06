@@ -12,42 +12,43 @@
 <body>
     <header class="main-header">
         <div class="header-content">
-            <h1>Codex - Dashboard</h1>
+            <h1>Codex</h1>
         </div>
     </header>
 
     <main class="container">
         <section class="site-admin">
 
+            <h2 class="site-admin-title">Site administration</h2>
+
             <div class="stats-grid">
                 <div class="stat-card">
-                    <span class="stat-label">QUANTIDADE DE LIVROS: {{ total_livros }} </span>
-                    <span class="stat-value"></span>
+                    <span class="stat-label">Quantidade de Livros</span>
+                    <span class="stat-value">{{ total_books }}</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-label">QUANTIDADE DE CÓPIAS: {{ total_copias }} </span>
-                    <span class="stat-value"></span>
+                    <span class="stat-label">Quantidade de Cópias</span>
+                    <span class="stat-value">{{ total_copies }}</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-label">EMPRÉSTIMOS ATIVOS: {{ emprestimos_ativos }} </span>
-                    <span class="stat-value"></span>
+                    <span class="stat-label">Empréstimos Ativos</span>
+                    <span class="stat-value">{{ active_lendings }}</span>
                 </div>
             </div>
 
             <div class="tab-buttons">
-                <button class="tab-btn active" id="btn-books">ACERVO</button>
-                <button class="tab-btn" id="btn-lendings">EMPRÉSTIMOS</button>
+                <button class="tab-btn active" id="btn-books">Acervo</button>
+                <button class="tab-btn" id="btn-lendings">Empréstimos</button>
             </div>
 
+            <!-- ACERVO -->
             <div id="section-books">
                 <div class="collection-header">
                     <div class="search-bar">
-                        <input type="text" id="searchInput" placeholder="Digite o título, código ou ano: ">
+                        <input type="text" id="searchInput" placeholder="Digite o título, código ou ano:">
                     </div>
-                    <button class="btn-add" onclick="window.location.href='{% url 'controle' %}'">Controle</button>
+                    <button class="btn-add">Controle</button>
                 </div>
-
-
 
                 <div class="table-wrapper">
                     <table id="booksTable">
@@ -63,22 +64,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for livro in livros %}
                             <tr>
-                                <td>{{ livro.titulo }}</td>
-                                <td>{{ livro.autor }}</td>
-                                <td>{{ livro.id }}</td>
-                                <td>{{ livro.categoria }}</td>
-                                <td>{{ livro.ano_lancamento }}</td>
-                                <td>{{ livro.quantidade_total }}</td>
-                                <td>{{ livro.sinopse }}</td>
+                                <td class="campos">One Hundred Years of Solitude</td>
+                                <td class="campos">Gabriel García Márquez</td>
+                                <td class="campos">978-0060883287</td>
+                                <td class="campos"><span class="badge">Fiction</span></td>
+                                <td class="campos">1967</td>
+                                <td class="campos">3</td>
+                                <td class="campos"><button>+</button></td>
                             </tr>
-                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
 
+            <!-- EMPRÉSTIMOS -->
             <div id="section-lendings" style="display: none;">
                 <div class="table-wrapper">
                     <table>
@@ -86,33 +86,60 @@
                             <tr>
                                 <th class="campos">Cliente</th>
                                 <th class="campos">Livro</th>
-                                <th class="campos">Data de empréstimo</th>
-                                <th class="campos">Data de devolução</th>
+                                <th class="campos">Data de Empréstimo</th>
+                                <th class="campos">Data de Devolução</th>
                                 <th class="campos">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for emprestimo in emprestimos %}
                             <tr>
-
-                                <td>{{ emprestimo.cliente }}</td>
-                                <td>{{ emprestimo.livro }}</td>
-                                <td>{{ emprestimo.data_emprestimo }}</td>
-                                <td>{{ emprestimo.data_devolucao }}</td>
-                                <td>{{ emprestimo.status }}</td>
-
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
+                                <td class="campos"></td>
                             </tr>
-                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+
         </section>
     </main>
 
+    <script src="{% static 'js/main.js' %}"></script>
 
-    
-    <!--<script src="{% static 'js/main.js' %}"></script>-->
+    <script>
+        // Tab switching
+        const btnBooks   = document.getElementById('btn-books');
+        const btnLendings = document.getElementById('btn-lendings');
+        const secBooks   = document.getElementById('section-books');
+        const secLendings = document.getElementById('section-lendings');
+
+        btnBooks.addEventListener('click', () => {
+            btnBooks.classList.add('active');
+            btnLendings.classList.remove('active');
+            secBooks.style.display = 'block';
+            secLendings.style.display = 'none';
+        });
+
+        btnLendings.addEventListener('click', () => {
+            btnLendings.classList.add('active');
+            btnBooks.classList.remove('active');
+            secLendings.style.display = 'block';
+            secBooks.style.display = 'none';
+        });
+
+        // Search filter
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            const rows  = document.querySelectorAll('#booksTable tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        });
+    </script>
 </body>
 
 </html>

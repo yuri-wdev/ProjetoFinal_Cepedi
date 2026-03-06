@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Livro
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def control(request):
     nexid=Livro().get_next_id()
 
