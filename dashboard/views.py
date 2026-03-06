@@ -14,8 +14,6 @@ def dashboard(request):
     ## funcao de carregar os todos livros na tela
 
   
-
-
     livros = Livro.objects.all()
     total_livros = len(livros)
     total_copias= total_livros

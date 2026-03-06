@@ -30,7 +30,7 @@ def control(request):
 
     return render(request,"control/control.html", context)
 
-
+@login_required
 def salvar_livro(request):
     if request.method == 'POST':
         titulo = request.POST.get('titulo')
@@ -46,7 +46,7 @@ def salvar_livro(request):
 
     return redirect('controle') 
 
-
+@login_required
 def editar_livro(request):
     if request.method == 'POST':
         livro_id = request.POST.get('id_do_livro')
@@ -62,7 +62,8 @@ def editar_livro(request):
         return redirect('controle')  # Redireciona após editar
 
     return redirect('controle')  # Se não for POST, volta para control
-
+    
+@login_required
 def remover_livro(request):
     if request.method == 'POST':
         id_livro = request.POST.get('id_do_livro')
