@@ -41,9 +41,9 @@ def salvar_livro(request):
 
         Livro().adicionar_livro(titulo, autor, categoria, publicacao, quantidade, sinopse)
         messages.success(request, f'📚 Livro "{titulo}" adicionado!')
-        return redirect('controle')  # Redireciona após salvar
+        return redirect('controle')
 
-    return redirect('controle')  # Se não for POST, volta para control
+    return redirect('controle') 
 
 
 def editar_livro(request):

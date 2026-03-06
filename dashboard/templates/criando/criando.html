@@ -73,7 +73,7 @@
                                 <td>{{ livro.quantidade_total }}</td>
                                 <td>{{ livro.sinopse }}</td>
                             </tr>
-                        {% endfor %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -94,13 +94,13 @@
                         <tbody>
                             {% for emprestimo in emprestimos %}
                             <tr>
-                               
+
                                 <td>{{ emprestimo.cliente }}</td>
                                 <td>{{ emprestimo.livro }}</td>
                                 <td>{{ emprestimo.data_emprestimo }}</td>
                                 <td>{{ emprestimo.data_devolucao }}</td>
                                 <td>{{ emprestimo.status }}</td>
-                                
+
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -111,8 +111,8 @@
     </main>
 
 
-
-    <script src="{% static 'js/main.js' %}"></script>
+    
+    <!--<script src="{% static 'js/main.js' %}"></script>-->
 </body>
 
 </html>
